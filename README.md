@@ -1,79 +1,86 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📄 PDFMaker
 
-# Getting Started
+A powerful PDF creation and viewing app for Android, built with React Native and TypeScript.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## ✨ Features
 
-## Step 1: Start the Metro Server
+- **📝 Text to PDF** — Create PDFs from text with rich formatting (Bold, Italic, Underline, Font sizes, Headings, Lists)
+- **🖼️ Images to PDF** — Convert multiple images into a single PDF with reorder, rotate, and delete options
+- **📑 Create PDF** — Multi-page PDF creator with inline images and full text formatting
+- **👁️ PDF Viewer** — Built-in PDF viewer with smooth navigation
+- **📂 Open & Share** — Open PDFs from file manager or share from any app to PDFMaker
+- **🕒 Recent PDFs** — Manage recent PDFs with rename and delete options
+- **⚙️ Settings** — Customize default PDF name, font size, page size, and orientation
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 📱 Screenshots
 
-To start Metro, run the following command from the _root_ of your React Native project:
+*(Add screenshots here)*
+
+## 🛠️ Tech Stack
+
+- **React Native** 0.76
+- **TypeScript**
+- **React Navigation** 6
+- **Feature-based Architecture**
+- **WebView-based Rich Text Editor**
+- **react-native-html-to-pdf**
+- **react-native-pdf**
+- **react-native-blob-util**
+
+## 📂 Project Structure
+src/
+├── components/
+│ └── Toast/
+├── context/
+│ ├── PdfContext.tsx
+│ └── SettingsContext.tsx
+├── features/
+│ ├── home/
+│ ├── textToPdf/
+│ ├── imagesToPdf/
+│ ├── pdfCreator/
+│ ├── pdfViewer/
+│ ├── recentPdfs/
+│ └── settings/
+├── hooks/
+├── navigation/
+├── theme/
+└── utils/
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js >= 18
+- Yarn 3
+- Android SDK
+
+### Installation
 
 ```bash
-# using npm
-npm start
+# Clone the repository
+git clone https://github.com/ibrarkhan999/PDFMaker.git
 
-# OR using Yarn
-yarn start
-```
+# Navigate to project
+cd PDFMaker
 
-## Step 2: Start your Application
+# Install dependencies
+yarn install
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
+# Run on Android
 yarn android
-```
 
-### For iOS
+📋 Usage
+Create PDF — Tap "Create PDF" on home screen
 
-```bash
-# using npm
-npm run ios
+Text to PDF — Quick text to PDF conversion
 
-# OR using Yarn
-yarn ios
-```
+Images to PDF — Select multiple images
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Open PDF — Share PDF from any app or open from file manager
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+🤝 Contributing
+Contributions are welcome! Feel free to open issues and pull requests.
 
-## Step 3: Modifying your App
+📄 License
+This project is private and not licensed for public use.
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
