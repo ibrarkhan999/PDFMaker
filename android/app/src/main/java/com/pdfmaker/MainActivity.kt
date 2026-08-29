@@ -13,22 +13,34 @@ class MainActivity : ReactActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    if (intent?.action == Intent.ACTION_VIEW || intent?.action == Intent.ACTION_SEND) {
-      val uri = intent?.data ?: intent?.getParcelableExtra<android.net.Uri>(Intent.EXTRA_STREAM)
-      if (uri != null) {
-        // Store the URI in a companion object to access from React Native
-        pendingPdfUri = uri.toString()
-      }
-    }
+    handleIntent(intent)
   }
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
     setIntent(intent)
-    if (intent?.action == Intent.ACTION_VIEW || intent?.action == Intent.ACTION_SEND) {
-      val uri = intent?.data ?: intent?.getParcelableExtra<android.net.Uri>(Intent.EXTRA_STREAM)
-      if (uri != null) {
-        pendingPdfUri = uri.toString()
+    handleIntent(intent)
+  }
+
+  private fun handleIntent(intent: Intent?) {
+    if (intent == null) return
+
+    when (intent.action) {
+      Intent.ACTION_VIEW -> {
+        intent.data?.let { uri ->
+          pendingPdfUri = uri.toString()
+        }
+      }
+      Intent.ACTION_SEND -> {
+        val uri = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+          intent.getParcelableExtra(Intent.EXTRA_STREAM, android.net.Uri::class.java)
+        } else {
+          @Suppress("DEPRECATION")
+          intent.getParcelableExtra<android.net.Uri>(Intent.EXTRA_STREAM)
+        }
+        uri?.let {
+          pendingPdfUri = it.toString()
+        }
       }
     }
   }
