@@ -20,6 +20,11 @@ class MainActivity : ReactActivity() {
     super.onNewIntent(intent)
     setIntent(intent)
     handleIntent(intent)
+    // Emit event to JS side
+    pendingPdfUri?.let { uri ->
+      PdfIntentModule.emitPdfIntent(uri)
+      pendingPdfUri = null
+    }
   }
 
   private fun handleIntent(intent: Intent?) {

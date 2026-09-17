@@ -55,11 +55,11 @@ const RootNavigator = () => {
         component={RecentPdfsScreen}
         options={{ title: 'Recent PDFs' }}
       />
-      <Stack.Screen
-        name="PdfViewer"
-        component={PdfViewerScreen}
-        options={{ title: 'PDF Viewer' }}
-      />
+<Stack.Screen
+  name="PdfViewer"
+  component={PdfViewerScreen}
+  options={{ headerShown: false }}
+/>
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
