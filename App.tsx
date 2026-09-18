@@ -30,18 +30,31 @@ const App = () => {
   };
 
   const handlePdfReceived = useCallback((uri: string) => {
-    console.log('PDF received:', uri);
     setIncomingPdf(uri);
   }, []);
 
   useIncomingPdf(handlePdfReceived);
 
-  useEffect(() => {
-    if (incomingPdf && navigationRef.isReady()) {
+useEffect(() => {
+  console.log('App: incomingPdf changed to:', incomingPdf);
+  
+  if (!incomingPdf) return;
+
+  const tryNavigate = () => {
+    const ready = navigationRef.isReady();
+    console.log('tryNavigate - navigationRef ready?', ready);
+    
+    if (ready) {
+      console.log('Navigating to PdfViewer with:', incomingPdf);
       navigationRef.navigate('PdfViewer', { uri: incomingPdf });
       setIncomingPdf(null);
+    } else {
+      setTimeout(tryNavigate, 200);
     }
-  }, [incomingPdf]);
+  };
+
+  tryNavigate();
+}, [incomingPdf]);
 
   return (
     <SafeAreaProvider>

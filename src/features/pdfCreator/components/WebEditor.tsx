@@ -73,16 +73,16 @@ const editorHTML = `
     <button onclick="formatText('bold')"><b>B</b></button>
     <button onclick="formatText('italic')"><i>I</i></button>
     <button onclick="formatText('underline')"><u>U</u></button>
-    <select onchange="changeFontSize(this.value)">
-      <option value="1">10</option>
-      <option value="2">12</option>
-      <option value="3" selected>14</option>
-      <option value="4">16</option>
-      <option value="5">18</option>
-      <option value="6">20</option>
-      <option value="7">24</option>
+    <select id="sizeSelect">
+      <option value="10px">10</option>
+      <option value="12px">12</option>
+      <option value="14px" selected>14</option>
+      <option value="16px">16</option>
+      <option value="18px">18</option>
+      <option value="20px">20</option>
+      <option value="24px">24</option>
     </select>
-    <select onchange="changeFormat(this.value)">
+    <select id="formatSelect">
       <option value="p">Paragraph</option>
       <option value="h1">Heading 1</option>
       <option value="h2">Heading 2</option>
@@ -129,9 +129,34 @@ const editorHTML = `
     }
     
     function changeFontSize(size) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        type: 'debug',
+        msg: 'changeFontSize called with: ' + size
+      }));
+      
       editor.focus();
-      document.execCommand('styleWithCSS', false, true);
-      document.execCommand('fontSize', false, size);
+      const selection = window.getSelection();
+      
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        type: 'debug',
+        msg: 'rangeCount: ' + selection.rangeCount
+      }));
+      
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const selectedText = range.extractContents();
+        
+        const span = document.createElement('span');
+        span.style.fontSize = size;
+        span.appendChild(selectedText);
+        
+        range.insertNode(span);
+        
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+          type: 'debug',
+          msg: 'font size applied successfully'
+        }));
+      }
     }
     
     function changeFormat(format) {
@@ -158,6 +183,14 @@ const editorHTML = `
       }
     }
     
+    document.getElementById('sizeSelect').addEventListener('change', function() {
+      changeFontSize(this.value);
+    });
+    
+    document.getElementById('formatSelect').addEventListener('change', function() {
+      changeFormat(this.value);
+    });
+    
     editor.addEventListener('input', function() {
       window.ReactNativeWebView.postMessage(JSON.stringify({
         type: 'content',
@@ -178,6 +211,10 @@ const WebEditor = ({ content, editorRef, onAddImage }: WebEditorProps) => {
 
   const handleMessage = (event: any) => {
     const data = JSON.parse(event.nativeEvent.data);
+
+    if (data.type === 'debug') {
+      console.log('>>>', data.msg);
+    }
 
     if (data.type === 'content' && editorRef) {
       editorRef.current = {

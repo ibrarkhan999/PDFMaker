@@ -1,0 +1,21 @@
+diff --git a/node_modules/react-native-html-to-pdf/android/build.gradle b/node_modules/react-native-html-to-pdf/android/build.gradle
+index f6509a2..0c267f8 100644
+--- a/node_modules/react-native-html-to-pdf/android/build.gradle
++++ b/node_modules/react-native-html-to-pdf/android/build.gradle
+@@ -17,7 +17,6 @@ buildscript {
+ 
+ 
+ apply plugin: "com.android.library"
+-apply plugin: "kotlin-android"
+ 
+ apply plugin: "com.facebook.react"
+ 
+@@ -28,7 +27,7 @@ def getExtOrIntegerDefault(name) {
+ android {
+   namespace "com.htmltopdf"
+ 
+-  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
++  compileSdk 36
+ 
+   defaultConfig {
+     minSdkVersion getExtOrIntegerDefault("minSdkVersion")

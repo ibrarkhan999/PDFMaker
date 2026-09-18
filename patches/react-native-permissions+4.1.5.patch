@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-permissions/android/build.gradle b/node_modules/react-native-permissions/android/build.gradle
+index 23378a8..d8959ec 100644
+--- a/node_modules/react-native-permissions/android/build.gradle
++++ b/node_modules/react-native-permissions/android/build.gradle
+@@ -23,7 +23,7 @@ if (isNewArchitectureEnabled()) {
+ 
+ android {
+     buildToolsVersion safeExtGet("buildToolsVersion", "33.0.0")
+-    compileSdkVersion safeExtGet("compileSdkVersion", 33)
++    compileSdk 36
+ 
+     if (project.android.hasProperty("namespace")) {
+         namespace "com.zoontek.rnpermissions"
