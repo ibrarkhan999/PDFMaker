@@ -60,6 +60,11 @@ const PdfViewerScreen = () => {
         spacing={spacing}
         fitPolicy={fitPolicy}
         trustAllCerts={false}
+        scale={1.0}
+        minScale={1.0}
+        maxScale={5.0}
+        enableAntialiasing={true}
+        enableAnnotationRendering={true}
       />
 
       <ViewerSettingsPanel

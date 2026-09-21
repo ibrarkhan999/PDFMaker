@@ -16,8 +16,8 @@ type ViewerSettingsPanelProps = {
   setHorizontal: (value: boolean) => void;
   spacing: number;
   setSpacing: (value: number) => void;
-  fitPolicy: number;
-  setFitPolicy: (value: number) => void;
+fitPolicy: 0 | 1 | 2;
+setFitPolicy: (value: 0 | 1 | 2) => void;
 };
 
 const spacingValues = [0, 5, 10, 20, 30];
@@ -101,7 +101,7 @@ const ViewerSettingsPanel = ({
                       styles.fitButton,
                       fitPolicy === index && styles.optionButtonActive,
                     ]}
-                    onPress={() => setFitPolicy(index)}
+                    onPress={() => setFitPolicy(index as 0 | 1 | 2)}
                   >
                     <Text
                       style={[

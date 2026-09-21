@@ -5,7 +5,7 @@ export const usePdfViewerSettings = () => {
   const [enablePaging, setEnablePaging] = useState(true);
   const [horizontal, setHorizontal] = useState(false);
   const [spacing, setSpacing] = useState(10);
-  const [fitPolicy, setFitPolicy] = useState(2);
+  const [fitPolicy, setFitPolicy] = useState<0 | 1 | 2>(0);
 
   return {
     showPageNumber,
